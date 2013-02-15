@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Autenticação</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet/main.css" />
+    <script type='text/javascript' src='javascript/jquery-1.9.1.js'></script>
+    <script type="text/javascript">
+    $(function(){
+      $('input[name=submit]').click(function(){
+        $('div.mensagem-erro').html('');
+        $.post('autenticar.php', {login: $('input[name=username]').val(), senha: $('input[name=password]').val()}, function(res){
+          if(!res){
+            window.location.href = '/gecx';
+          }else{
+            $('div.mensagem-erro').html(res);
+          }
+        return false;
+        });
+        return false;
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <div  class="box_centralizado">
+      <form id="formlogin" action="#" method="post" class="login" name='formlogin'>
+        <fieldset>
+          <legend align="center"> Biblioteca GECX::Acesso </legend>
+
+          <div class="loader" style="display: none;"><img src="imagens/loader.gif" alt="Carregando" /></div>
+          <div class="mensagem-erro"></div>
+
+          <p>
+            <label for="username">Login:</label> <br />
+            <input type="text" id="username" name="username" class="campo" autofocus="true" required="true" />
+          </p>
+
+          <p>
+            <label for="password">Senha:</label> <br />
+            <input type="password" id="password" name="password" class="campo" />
+          </p>
+          <p>
+            <input type="submit" name="submit" value="Autenticar" style="width: 85px; height: 25px" class="campo" />
+          </p>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>
