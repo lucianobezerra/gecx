@@ -18,7 +18,9 @@ if (!$logado) {
     <link rel="stylesheet" type="text/css" href="stylesheet/reset.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheet/main.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheet/menus.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheet/flick/jquery-ui-1.10.0.custom.css"/>
     <script type='text/javascript' src='javascript/jquery-1.9.1.js'></script>
+    <script type='text/javascript' src='javascript/jquery-ui-1.10.0.min.js'></script>
     <script type='text/javascript' src='javascript/jquery.form.js'></script>
     <script type='text/javascript'>
       $(function() {

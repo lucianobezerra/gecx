@@ -14,11 +14,13 @@ $session->start();
     <title></title>
   </head>
   <style type="text/css">
+  /*
     div #home{
       width: 568px;
       height: 400px;
       background-image: url('imagens/back_home.jpg'); background-repeat: no-repeat !important;
     }
+    */
   </style>
   <body>
     <div id="home">

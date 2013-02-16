@@ -11,5 +11,9 @@ $item->valorpk = $id;
 $item->seleciona($item);
 
 $linha = $item->retornaDados("array");
-echo $linha['title'];
+if ($linha > 0) {
+  echo $linha['title'] . '|' . $linha['available_copies'];
+} else {
+  echo "";
+}
 ?>

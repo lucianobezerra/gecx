@@ -46,9 +46,10 @@ function devolver($id){
   $loan->setValor('devolution', dataEUA($_POST['devolution']));
   $loan->delCampo('item_id');
   $loan->delCampo('reader_id');
+  $loan->delCampo('prevision');
   $loan->delCampo('entry');
   $loan->valorpk = $id;
-  $loan->devolver($loan);
+  $loan->atualizar($loan);
 }
 
 ?>

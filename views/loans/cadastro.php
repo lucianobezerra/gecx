@@ -10,8 +10,14 @@
             $('input[name=name_reader]').attr('value', '');
             if (!data) {
               $('input[name=name_reader]').attr('value', 'USUÁRIO NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
+              $('input[name=item_id]').attr('disabled', true);
+              $('input[name=prevision]').attr('disabled', true);
+              $('input[name=submit]').attr('disabled', true).css('color', 'red');
             } else {
               $('input[name=name_reader]').attr('value', data);
+              $('input[name=item_id]').attr('disabled', false);
+              $('input[name=prevision]').attr('disabled', false);
+              $('input[name=submit]').attr('disabled', false).css('color', 'green');
             }
           });
         });
@@ -22,12 +28,48 @@
           $.post(url, {id: id}, function(data) {
             if (!data) {
               $('input[name=name_item]').attr('value', 'ITEM NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
+              $('input[name=prevision]').attr('disabled', true);
+              $('input[name=submit]').attr('disabled', true).css('color', 'red');
             } else {
-              $('input[name=name_item]').attr('value', data);
+              var item = data.split("|")[0];
+              var qtde = data.split("|")[1];
+              if (qtde > 0) {
+                $('input[name=name_item]').attr('value', item);
+                $('input[name=prevision]').attr('disabled', false);
+                $('input[name=submit]').attr('disabled', false).css('color', 'green');
+              } else {
+                $('input[name=name_item]').attr('value', item + ' - NÃO DISPONÍVEL').css('color', 'red');
+                $('input[name=prevision]').attr('disabled', true);
+                $('input[name=submit]').attr('disabled', true).css('color', 'red');
+              }
             }
           });
         });
-        
+        $("#modal_user").dialog({
+          autoOpen: false,
+          width: 400,
+          buttons: [
+            {
+              text: "Ok",
+              click: function() {
+                $(this).dialog("close");
+              }
+            },
+            {
+              text: "Cancelar",
+              click: function() {
+                $(this).dialog("close");
+              }
+            }
+          ]
+        });
+
+        $("p#xxx").click(function(event) {
+          $("#modal_user").dialog("open");
+          event.preventDefault();
+        });
+
+
         $('form#loan').submit(function() {
           $(this).ajaxSubmit(function(retorno) {
             if (!retorno) {
@@ -50,6 +92,7 @@
           <td width="10%" style="padding-top: 6px; margin-bottom: 6px">Usuário: </td>
           <td width="12%" style="padding-top: 6px; margin-bottom: 6px"><input type="number" name="reader_id" autofocus="true" size="6" class="campo" required="true" /></td>
           <td width="78%" style="padding-top: 6px; margin-bottom: 6px"><input type="text" name="name_reader" size="50" class="campo" disabled /></td>
+        <p id="xxx">xxx</p>
         </tr>
         <tr>
           <td style="padding-top: 6px; margin-bottom: 6px">Item: </td>
@@ -68,5 +111,6 @@
     </form>
     <br/>
     <div id="mensagem-erro" class="mensagem-erro"></div>
+    <div id="modal_user">rege</div>
   </body>
 </html>

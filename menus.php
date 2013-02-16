@@ -20,8 +20,8 @@
   <dt><a href="#">Movimento</a></dt>
   <dd>
     <ul>
-      <li><a href="views/loans/cadastro.php">Empréstimos</a></li>
-      <li><a href="views/loans/index.php">Devoluções</a></li>
+      <li><a href="views/loans/cadastro.php">Empréstimo</a></li>
+      <li><a href="views/loans/index.php">Devolução</a></li>
     </ul>
   </dd>
   <dt><a href="#">Relatórios</a></dt>

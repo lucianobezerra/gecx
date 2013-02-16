@@ -20,6 +20,7 @@ function inserir(){
   $user->setValor('name',     $_POST['name']);
   $user->setValor('password', $user->encrypt($_POST['password']));
   $user->setValor('ativo',    $_POST['ativo']);
+  $user->delCampo("entry");
   $user->inserir($user);
 }
 
@@ -28,6 +29,7 @@ function alterar($id){
   $user->setValor('name', $_POST['name']);
   $user->setValor('ativo', $_POST['ativo']);
   $user->valorpk = $id;
+  $user->delCampo("entry");
   $user->delCampo("username");
   $user->delCampo("password");
   $user->atualizar($user);
