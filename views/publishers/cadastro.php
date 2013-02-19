@@ -49,15 +49,15 @@ $state->selecionaTudo($state);
         </tr>
         <tr>
           <td>Endereço:</td>
-          <td><input type="text" name="address" id="address" size="40" maxlength="60" class="campo" required="true"/></td>
+          <td><input type="text" name="address" id="address" size="40" maxlength="60" class="campo" /></td>
         </tr>
         <tr>
           <td>Bairro:</td>
-          <td><input type="text" name="neighborhood" id="neighborhood" size="40" maxlength="40" class="campo" required="true"/></td>
+          <td><input type="text" name="neighborhood" id="neighborhood" size="40" maxlength="40" class="campo" /></td>
         </tr>
         <tr>
           <td>Fone:</td>
-          <td><input type="tel" name="phone" id="phone" size="40" maxlength="14" class="campo" required="true" pattern="[0-9]{1,2}\s[0-9]{4,5}[-][0-9]{4,5}"/>(xx xxxx-xxxx)</td>
+          <td><input type="tel" name="phone" id="phone" size="40" maxlength="14" class="campo"  pattern="[0-9]{1,2}\s[0-9]{4,5}[-][0-9]{4,5}"/>(xx xxxx-xxxx)</td>
         </tr>
         <tr>
           <td>Email:</td>

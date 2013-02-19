@@ -23,7 +23,7 @@ class Item extends Base {
     $this->campopk = "id";
   }
   
-  public function listItems(){
+  public function listItems($condicao){
     $sql =  "select items.id, authors.name author, categories.description category, types.description type, ";
     $sql .= "publishers.name publisher, items.isbn, items.title, items.subtitle, items.pages, ";
     $sql .= "items.existing_copies, items.available_copies, items.ativo ";
@@ -31,7 +31,8 @@ class Item extends Base {
     $sql .= "inner join authors on items.author_id = authors.id ";
     $sql .= "inner join categories on items.category_id = categories.id ";
     $sql .= "inner join types on items.type_id = types.id ";
-    $sql .= "inner join publishers on items.publisher_id = publishers.id";
+    $sql .= "inner join publishers on items.publisher_id = publishers.id ";
+    $sql .= "where items.ativo {$condicao}";
     $result = mysql_query($sql);
     return $result;
   }

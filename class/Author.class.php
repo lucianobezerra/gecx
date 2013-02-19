@@ -11,6 +11,12 @@ class Author extends Base {
     $this->campopk = "id";
   }
 
+  public function listItems($condicao){
+    $sql =  "select * from authors where ativo {$condicao} ";
+    $result = mysql_query($sql);
+    return $result;
+  }  
+
 }
 
 ?>

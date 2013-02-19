@@ -11,7 +11,7 @@
         $('div.mensagem-erro').html('');
         $.post('autenticar.php', {login: $('input[name=username]').val(), senha: $('input[name=password]').val()}, function(res){
           if(!res){
-            window.location.href = '/gecx';
+            window.location.href = '/biblioteca';
           }else{
             $('div.mensagem-erro').html(res);
           }
