@@ -24,11 +24,18 @@
       <li><a href="views/loans/index.php">Devolução</a></li>
     </ul>
   </dd>
+  <dt><a href="#">Manutenção</a></dt>
+  <dd>
+    <ul>
+      <li><a href="views/manutencao/ajustar_saldo.php">Ajustar Saldo</a></li>
+    </ul>
+  </dd>
   <dt><a href="#">Relatórios</a></dt>
   <dd>
     <ul>
-      <li><a href="views/relatorios/cadastro.php">Mais Lidos</a></li>
-      <li><a href="views/relatorios/pesquisar.php">Pendentes</a></li>
+      <li><a href="views/items/relatorios.php">Items</a></li>
+      <li><a href="views/loans/mais_lidos.php">Mais Lidos</a></li>
+      <li><a href="views/readers/aniversariantes.php">Aniversariantes</a></li>
     </ul>
   </dd>
   <dt><a class="sair" href="logout.php">Sair do Sistema</a></dt>

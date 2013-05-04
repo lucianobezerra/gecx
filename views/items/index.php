@@ -12,6 +12,7 @@ $items = $item->listItems("and 1=1");
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript">
       function desativar(id) {
         $.post('model/item.php?acao=desativar',
@@ -47,6 +48,8 @@ $items = $item->listItems("and 1=1");
           $('#right').load($(this).attr('href'));
           return false;
         });
+
+
         $('input[name=submit]').click(function() {
           var url = 'model/item.php?acao=buscar';
           var texto = $('input[name=search]').val();
@@ -60,7 +63,7 @@ $items = $item->listItems("and 1=1");
     </script>
   </head>
   <body>
-    <fieldset style="border: solid 1px; padding: 3px; line-height: 15px; margin-top: 12px">
+    <fieldset style="border: solid 1px; padding: 3px; margin-top: 12px">
       <legend>Pesquisar Item</legend>
       <form action="#" method="post" name="pesquisar" class="campo" style="border: none">
         <table>
@@ -75,32 +78,32 @@ $items = $item->listItems("and 1=1");
     </fieldset>    
     <div id="retorno" style="color: red; font-weight: bold; margin-top: 8px;"></div>
     <div id="data">
-      <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; line-height: 130%">
+      <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt;">
         <thead>
           <tr>
-            <th colspan="8" style='text-align: center; font-size: 12pt'>Itens Ativos</th>
+            <th colspan="9" style='text-align: center; font-size: 12pt'>Itens Ativos</th>
           </tr>
           <tr>
-            <th style="width: 06%; text-align: center">Cód</th>
-            <th style="width: 33%; padding-left: 2px;">Título</th>
-            <th style="width: 33%; padding-left: 2px;">Autor</th>
-            <th style="width: 09%; padding-left: 2px;">Cópias</th>
-            <th style="width: 09%; padding-left: 2px;">Saldo</th>
-            <th colspan="3" style='text-align: center; width: 12%'>Ação</th>
+            <th style="width: 06%; text-align: center; font-size: 8pt;">Cód</th>
+            <th style="width: 35%; padding-left: 2px; font-size: 8pt;">Título</th>
+            <th style="width: 35%; padding-left: 2px; font-size: 8pt;">Autor</th>
+            <th style="width: 07%; text-align: center; font-size: 8pt;">Cópias</th>
+            <th style="width: 07%; text-align: center; font-size: 8pt;">Saldo</th>
+            <th colspan="3" style='text-align: center; width: 12%; font-size: 8pt;'>Ação</th>
           </tr>
         </thead>
 
         <?php while ($linha = mysql_fetch_object($items)) { ?>
 
           <tr id="row_<?= $linha->id; ?>">
-            <td style='text-align: center; font-size: 9pt;'><?= str_pad($linha->id, 4, '0', STR_PAD_LEFT); ?></td>
-            <td style='text-align: left; padding-left: 2px; font-size: 9pt;'><?= $linha->title ?></td>
-            <td style='text-align: left; padding-left: 2px; font-size: 9pt;'><?= $linha->author ?></td>
-            <td style='text-align:center; padding-left: 2px; font-size: 9pt;'><?= $linha->existing_copies ?></td>
-            <td style='text-align:center; padding-left: 2px; font-size: 9pt;'><?= $linha->available_copies ?></td>
-            <td style='text-align: center;'><?php echo "<a class='alterar' href='views/items/alterar.php?id={$linha->id}' title='Alterar'><img src='imagens/alterar.gif' border='0' alt=''/></a>" ?></td>
-            <td style='text-align: center;'><?php echo "<a class='desativar' href='#' onClick='desativar({$linha->id})' title='Desativar'><img src='imagens/desativar.gif' border='0' alt=''/></a>" ?></td>
-            <td style='text-align: center;'><?php echo "<a class='excluir' href='#' onClick='excluir({$linha->id})' title='Excluir'><img src='imagens/excluir.png' border='0' alt=''/></a>" ?></td>
+            <td style='text-align: center; font-size: 8pt;'><?= str_pad($linha->id, 4, '0', STR_PAD_LEFT); ?></td>
+            <td style='text-align: left; padding-left: 2px; font-size: 8pt;'><?= $linha->title ?></td>
+            <td style='text-align: left; padding-left: 2px; font-size: 8pt;'><?= $linha->author ?></td>
+            <td style='text-align:center; padding-left: 2px; font-size: 8pt;'><?= $linha->existing_copies ?></td>
+            <td style='text-align:center; padding-left: 2px; font-size: 8pt;'><?= $linha->available_copies ?></td>
+            <td style='text-align: center;'><?php echo "<a class='alterar'   href='views/items/alterar.php?id={$linha->id}' title='Alterar'>  <img src='imagens/alterar.gif' border='0' alt=''/></a>" ?></td>
+            <td style='text-align: center;'><?php echo "<a class='desativar' href='#' onClick='desativar({$linha->id})'     title='Desativar'><img src='imagens/desativar.gif' border='0' alt=''/></a>" ?></td>
+            <td style='text-align: center;'><?php echo "<a class='excluir'   href='#' onClick='excluir({$linha->id})'       title='Excluir'>  <img src='imagens/excluir.png' border='0' alt=''/></a>" ?></td>
           </tr>
         <?php } ?>
       </table>

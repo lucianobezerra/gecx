@@ -52,7 +52,7 @@ $category->selecionaTudo($category);
   </head>
   <body>
     <div id="retorno" style="color: red; font-weight: bold; margin-top: 8px;"></div>
-    <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; line-height: 130%;">
+    <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; ">
       <thead>
         <tr>
           <th colspan="7" style='text-align: center; font-size: 12pt'>Categorias Ativas</th>

@@ -16,6 +16,7 @@ thead th {
 tr td{
   font-size: 10pt;
   line-height: 140%;
+  padding-left: 5px;
 }
 
 .box_centralizado {
@@ -156,4 +157,11 @@ p {
 
 .aviso{
   margin-top: 16px;
+}
+
+.retorno{
+  margin-top: 10px;
+  font-size: 12pt;
+  color: #03C;
+  text-align: left;
 }

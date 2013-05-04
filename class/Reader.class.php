@@ -24,13 +24,13 @@ class Reader extends Base {
     $this->campopk = "id";
   }
 
-  public function listReaders() {
+  public function listReaders($condicao) {
     $sql = "select readers.id, readers.name reader, readers.address, readers.neighborhood, readers.phone1, readers.phone2, ";
     $sql .= "readers.city_id, readers.state_id, readers.birth, readers.entry, cities.name citie, states.name state ";
     $sql .= "from readers ";
     $sql .= "inner join cities on readers.city_id = cities.id ";
     $sql .= "inner join states on readers.state_id = states.id ";
-    $sql .= "where readers.ativo order by readers.name";
+    $sql .= "where readers.ativo {$condicao} order by readers.name";
     $result = mysql_query($sql);
     return $result;
   }

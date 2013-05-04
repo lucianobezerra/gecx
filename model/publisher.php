@@ -14,6 +14,7 @@ switch ($acao) {
   case "excluir": excluir($id);     break;
   case "desativar": desativar($id); break;
   case "buscar": buscar($texto);    break;
+  case "listar": listar();          break;
 }
 
 function buscar($texto) {
@@ -21,19 +22,21 @@ function buscar($texto) {
   $publisher->extras_select = "where name like '%{$texto}%' and ativo order by name";
   $publisher->selecionaTudo($publisher);
   ?>
-  <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; line-height: 130%">
+  <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt;">
     <thead>
       <tr>
         <th colspan="9" style='text-align: center; font-size: 12pt'>Editoras Ativas</th>
       </tr>
       <tr>
-        <th style="width: 60%">Nome</th>
-        <th style="width: 20%">Fone</th>
+        <th style="width: 06%">Cód</th>
+        <th style="width: 59%">Nome</th>
+        <th style="width: 15%">Fone</th>
         <th colspan="3" style='text-align: center; width: 20%'>Ação</th>
       </tr>
     </thead>
     <?php while ($linha = $publisher->retornaDados()) { ?>
       <tr id="row_<?= $linha->id; ?>">
+        <td style="padding-left: 2px; font-size: 9pt;"><?= str_pad($linha->id, 4, '0', STR_PAD_LEFT); ?></td>
         <td style="padding-left: 2px; font-size: 9pt;"><?= $linha->name ?></td>
         <td style="padding-left: 2px; font-size: 9pt;"><?= $linha->phone ?></td>
         <td style='text-align: center;font-size: 9pt;'><?php echo "<a class='alterar' href='views/publishers/alterar.php?id={$linha->id}' title='Alterar'><img src='imagens/alterar.gif' border='0' alt=''/></a>" ?></td>
@@ -82,5 +85,14 @@ function desativar($id) {
   $publisher = new Publisher();
   $publisher->valorpk = $id;
   $publisher->desativar($publisher);
+}
+
+function listar(){
+  $publisher = new Publisher();
+  $publisher->selecionaTudo($publisher);
+  echo "<option value=''>Selecione A Editora</option>";
+  while($linha = $publisher->RetornaDados()){
+    echo "<option value='{$linha->id}'>{$linha->name}</option>";
+  }
 }
 ?>

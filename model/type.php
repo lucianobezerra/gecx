@@ -12,6 +12,7 @@ switch ($acao) {
   case "alterar":   alterar($id);   break;
   case "excluir":   excluir($id);   break;
   case "desativar": desativar($id); break;
+  case "listar":    listar();       break;
 }
 
 function inserir(){
@@ -39,6 +40,16 @@ function desativar($id){
   $type = new Type();
   $type->valorpk = $id;
   $type->desativar($type);
+}
+
+function listar(){
+  $type = new Type();
+  $type->selecionaTudo($type);
+  echo "<option value=''>Selecione a Mídia</option>";
+  echo "<option value='0'>Todas as Mídias</option>";
+  while($linha = $type->RetornaDados()){
+    echo "<option value='{$linha->id}'>{$linha->description}</option>";
+  }
 }
 
 ?>

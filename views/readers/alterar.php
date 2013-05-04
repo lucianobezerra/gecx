@@ -118,7 +118,6 @@ $linha = $reader->retornaDados("array");
                    size="40" 
                    maxlength="14" 
                    class="campo" 
-                   required="true" 
                    pattern="[0-9]{1,2}\s[0-9]{4,5}[-][0-9]{4,5}"
                    value="<?= $linha['phone2']; ?>"
                    />(xx xxxx-xxxx)

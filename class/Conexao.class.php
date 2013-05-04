@@ -4,7 +4,7 @@ class Conexao {
 
   private $host = "localhost";
   private $user = "root";
-  private $pswd = "phi1618";
+  private $pswd = "mysql";
   private $banco = "gecx";
   var $link;
 

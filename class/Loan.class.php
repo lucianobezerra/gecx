@@ -24,6 +24,26 @@ class Loan extends Base {
     return $this->executaSql($sql);
   }
 
+  public function itemsLoaneds($item_id){
+    $sql = "SELECT count( item_id ) AS qtde FROM loans where item_id={$item_id}";
+    $result = mysql_query($sql);
+    return $result;
+  }
+  
+  
+  
+  public function moreLoaneds(){
+    $sql =  "select loans.item_id, items.title, types.description, count(loans.item_id) as qtde ";
+    $sql .= "from loans  ";
+    $sql .= "inner join items on loans.item_id = items.id ";
+    $sql .= "inner join types on items.type_id = types.id ";
+    $sql .= "group by loans.item_id, items.title, types.description ";
+    $sql .= "order by qtde limit 5";
+    $result = mysql_query($sql);
+    return $result;
+  }
+
+  
   public function pendingLoans() {
     $sql  = "SELECT loans.id, items.title, readers.name, date_format(loans.entry, '%d/%m/%Y') saida, ";
     $sql .= "   date_format(loans.prevision, '%d/%m/%Y') previsao ";

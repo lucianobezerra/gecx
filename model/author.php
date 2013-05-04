@@ -14,13 +14,23 @@ switch ($acao) {
   case "excluir":   excluir($id);   break;
   case "desativar": desativar($id); break;
   case "buscar":   buscar($texto);  break;
+  case "listar":   listar();  break;
 }
 
 function buscar($texto){
-  $author = new Author();
-  $authors = $author->listItems("and name like '%{$texto}%'");
-  ?>
-    <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; line-height: 130%">
+  $authors = new Author();
+  $authors->extras_select = "where name like '%{$texto}%' and ativo order by name";
+  $authors->selecionaTudo($authors);
+?>
+  <script type="text/javascript">
+    $(function() {
+      $('.alterar').click(function() {
+        $('#right').load($(this).attr('href'));
+        return false;
+      });
+    });
+  </script>
+    <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt;">
       <thead>
         <tr>
           <th colspan="7" style='text-align: center; font-size: 12pt'>Autores Ativos</th>
@@ -32,7 +42,7 @@ function buscar($texto){
           <th colspan="3" style='text-align: center; width: 20%'>Ação</th>
         </tr>
       </thead>
-      <?php while ($linha = mysql_fetch_object($authors)) { ?>
+      <?php while ($linha = $authors->retornaDados()) { ?>
         <tr id="row_<?= $linha->id; ?>">
           <td style='text-align: center;'><?= str_pad($linha->id, 4, '0', STR_PAD_LEFT) ?></td>
           <td style='text-align: left; padding-left: 2px;'><?= $linha->name ?></td>
@@ -72,6 +82,16 @@ function desativar($id){
   $author = new Author();
   $author->valorpk = $id;
   $author->desativar($author);
+}
+
+function listar(){
+  $author = new Author();
+  $author->selecionaTudo($author);
+  echo "<option value=''>Selecione o Autor</option>";
+  echo "<option value='0'>Todos os Autores</option>";
+  while($linha = $author->RetornaDados()){
+    echo "<option value='{$linha->id}'>{$linha->name}</option>";
+  }
 }
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Base.class.php';
-
 class Item extends Base {
 
   public function __construct($campos = Array()) {
@@ -32,11 +31,11 @@ class Item extends Base {
     $sql .= "inner join categories on items.category_id = categories.id ";
     $sql .= "inner join types on items.type_id = types.id ";
     $sql .= "inner join publishers on items.publisher_id = publishers.id ";
-    $sql .= "where items.ativo {$condicao}";
+    $sql .= "where items.ativo {$condicao} order by items.title";
     $result = mysql_query($sql);
     return $result;
   }
-
+  
 }
 
 ?>

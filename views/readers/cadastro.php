@@ -61,7 +61,7 @@ $state->selecionaTudo($state);
         </tr>
         <tr>
           <td>Fone2:</td>
-          <td><input type="tel" name="phone2" id="phone2" size="40" maxlength="14" class="campo" required="true" pattern="[0-9]{1,2}\s[0-9]{4,5}[-][0-9]{4,5}"/>(xx xxxx-xxxx)</td>
+          <td><input type="tel" name="phone2" id="phone2" size="40" maxlength="14" class="campo" pattern="[0-9]{1,2}\s[0-9]{4,5}[-][0-9]{4,5}"/>(xx xxxx-xxxx)</td>
         </tr>
         <tr>
           <td>Email:</td>

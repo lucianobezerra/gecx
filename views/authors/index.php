@@ -61,7 +61,7 @@ $author->selecionaTudo($author);
     </script>
   </head>
   <body>
-    <fieldset style="border: solid 1px; padding: 3px; line-height: 15px; margin-top: 12px">
+    <fieldset style="border: solid 1px; padding: 3px; margin-top: 12px">
       <legend>Pesquisar Autor</legend>
       <form action="#" method="post" name="pesquisar" class="campo" style="border: none">
         <table>
@@ -76,7 +76,7 @@ $author->selecionaTudo($author);
     </fieldset>    
     <div id="retorno" style="color: red; font-weight: bold; margin-top: 8px;"></div>
     <div id="data">
-      <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt; line-height: 130%">
+      <table width="100%" border="1" align="center" style="margin-top: 8px;font-size: 10pt;">
         <thead>
           <tr>
             <th colspan="7" style='text-align: center; font-size: 12pt'>Autores Ativos</th>

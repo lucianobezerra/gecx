@@ -4,7 +4,7 @@ abstract class Banco {
 
   private $host = 'localhost';
   private $user = 'root';
-  private $pswd = 'phi1618';
+  private $pswd = 'mysql';
   private $banco = 'gecx';
   private $conexao = null;
   private $dataset = null;
@@ -95,6 +95,7 @@ abstract class Banco {
     if ($objeto->extras_select != null) {
       $sql .= " " . $objeto->extras_select . " ";
     }
+    //echo $sql;
     return $this->executaSql($sql);
   }
 
@@ -146,6 +147,11 @@ abstract class Banco {
   public function excluir($objeto) {
     $sql = "delete from {$objeto->tabela} where {$objeto->campopk} = {$objeto->valorpk}";
     return $this->executaSql($sql);
+  }
+  
+  public function contar($objeto){
+    $sql = "select count(id) from {$objeto->tabela}";
+    return $result = $this->executaSql($sql);
   }
 
 }

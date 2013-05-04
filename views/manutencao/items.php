@@ -6,13 +6,13 @@ function __autoload($classe) {
 
 $id = $_REQUEST['id'];
 
-$reader = new Reader();
-$reader->valorpk = $id;
-$reader->seleciona($reader);
+$item = new Item();
+$item->valorpk = $id;
+$item->seleciona($item);
 
-$linha = $reader->retornaDados("array");
+$linha = $item->retornaDados("array");
 if ($linha > 0) {
-  echo $linha['name'];
+  echo $linha['title'];
 } else {
   echo "";
 }

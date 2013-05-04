@@ -1,0 +1,16 @@
+fieldset {
+  border: 1px solid black;
+  padding: 3px;
+}
+fieldset legend {
+  padding: 6px;
+}
+
+label {
+  display: block;
+  width: 35px;
+  float: left;
+}
+
+label:after { content: ": " 
+}

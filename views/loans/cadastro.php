@@ -3,21 +3,41 @@
   <head>
     <script type="text/javascript">
       $(function($) {
+        $("#prevision").mask("99/99/9999");
+        $('input[name=search_user]').click(function(ev) {
+          var windowSize = "width=600,height=400,scrollbars=no";
+          var url = 'views/loans/browse_readers.php';
+          var windowName = 'Seleciona Usuário';
+          window.open(url, windowName, windowSize);
+          ev.preventDefault();
+          return false;
+        });
+
+        $('input[name=search_item]').click(function(ev) {
+          var windowSize = "width=500,height=350,scrollbars=no";
+          var url = 'views/loans/browse_items.php';
+          var windowName = 'Seleciona Item';
+          window.open(url, windowName, windowSize);
+          ev.preventDefault();
+          return false;
+        });
+
         $('input[name=reader_id]').change(function() {
           var url = 'views/loans/readers.php';
           var id = $(this).val();
           $.post(url, {id: id}, function(data) {
-            $('input[name=name_reader]').attr('value', '');
+            $('input[name=reader_name]').attr('value', '');
             if (!data) {
-              $('input[name=name_reader]').attr('value', 'USUÁRIO NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
+              $('input[name=reader_name]').attr('value', 'USUÁRIO NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
               $('input[name=item_id]').attr('disabled', true);
               $('input[name=prevision]').attr('disabled', true);
               $('input[name=submit]').attr('disabled', true).css('color', 'red');
             } else {
-              $('input[name=name_reader]').attr('value', data);
+              $('input[name=reader_name]').attr('value', data);
               $('input[name=item_id]').attr('disabled', false);
               $('input[name=prevision]').attr('disabled', false);
               $('input[name=submit]').attr('disabled', false).css('color', 'green');
+              $('input[name=item_id]').focus();
             }
           });
         });
@@ -27,48 +47,26 @@
           var id = $(this).val();
           $.post(url, {id: id}, function(data) {
             if (!data) {
-              $('input[name=name_item]').attr('value', 'ITEM NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
+              $('input[name=item_name]').attr('value', 'ITEM NÃO LOCALIZADO!').css('color', 'red').css('background-color', 'yellow');
               $('input[name=prevision]').attr('disabled', true);
               $('input[name=submit]').attr('disabled', true).css('color', 'red');
             } else {
               var item = data.split("|")[0];
               var qtde = data.split("|")[1];
               if (qtde > 0) {
-                $('input[name=name_item]').attr('value', item);
+                $('input[name=item_name]').attr('value', item);
                 $('input[name=prevision]').attr('disabled', false);
-                $('input[name=submit]').attr('disabled', false).css('color', 'green');
+//                $('input[name=prevision]').val(myDate);
+                $('input[name=submit]').attr('disabled', false).css('color', 'green');                
+                $('input[name=prevision]').focus();
               } else {
-                $('input[name=name_item]').attr('value', item + ' - NÃO DISPONÍVEL').css('color', 'red');
+                $('input[name=item_name]').attr('value', item + ' - NÃO DISPONÍVEL').css('color', 'red');
                 $('input[name=prevision]').attr('disabled', true);
                 $('input[name=submit]').attr('disabled', true).css('color', 'red');
               }
             }
           });
         });
-        $("#modal_user").dialog({
-          autoOpen: false,
-          width: 400,
-          buttons: [
-            {
-              text: "Ok",
-              click: function() {
-                $(this).dialog("close");
-              }
-            },
-            {
-              text: "Cancelar",
-              click: function() {
-                $(this).dialog("close");
-              }
-            }
-          ]
-        });
-
-        $("p#xxx").click(function(event) {
-          $("#modal_user").dialog("open");
-          event.preventDefault();
-        });
-
 
         $('form#loan').submit(function() {
           $(this).ajaxSubmit(function(retorno) {
@@ -90,18 +88,19 @@
       <table width="100%" border="0">
         <tr>
           <td width="10%" style="padding-top: 6px; margin-bottom: 6px">Usuário: </td>
-          <td width="12%" style="padding-top: 6px; margin-bottom: 6px"><input type="number" name="reader_id" autofocus="true" size="6" class="campo" required="true" /></td>
-          <td width="78%" style="padding-top: 6px; margin-bottom: 6px"><input type="text" name="name_reader" size="50" class="campo" disabled /></td>
-        <p id="xxx">xxx</p>
+          <td width="12%" style="padding-top: 6px; margin-bottom: 6px"><input type="number" name="reader_id"   id="reader_id" autofocus="true" size="5" class="campo" required="true" style="height: 20px"/></td>
+          <td width="70%" style="padding-top: 6px; margin-bottom: 6px"><input type="text"   name="reader_name" id="reader_name" size="50" class="campo" disabled style="height: 20px" /></td>
+          <td width="08%" style="padding-top: 6px; margin-bottom: 6px"><input type="submit" name="search_user" value="..." class="campo" style="width: 40px; height: 20px" /> </td>
         </tr>
         <tr>
           <td style="padding-top: 6px; margin-bottom: 6px">Item: </td>
-          <td style="padding-top: 6px; margin-bottom: 6px"><input type="number" name="item_id" size="6" class="campo" required="true" /></td>
-          <td style="padding-top: 6px; margin-bottom: 6px"><input type="text" name="name_item" size="50" class="campo" disabled /></td>
+          <td style="padding-top: 6px; margin-bottom: 6px"><input type="number" name="item_id"   id="item_id"   size="5" class="campo" required="true" /></td>
+          <td style="padding-top: 6px; margin-bottom: 6px"><input type="text"   name="item_name" id="item_name" size="50" class="campo" disabled /></td>
+          <td style="padding-top: 6px; margin-bottom: 6px"><input type="submit" name="search_item" value="..." class="campo" style="width: 40px; height: 20px" /> </td>
         </tr>
         <tr>
           <td style="padding-top: 6px; margin-bottom: 6px">Entrega:</td>
-          <td style="padding-top: 6px; margin-bottom: 6px"><input type="date" name="prevision" size="6" class="campo" required="true" /></td>
+          <td style="padding-top: 6px; margin-bottom: 6px"><input type="date" name="prevision" id="prevision" size="6" class="campo" required="true" /></td>
           <td style="padding-top: 6px; margin-bottom: 6px">&nbsp;(Previsão)</td>
         </tr>
         <tr>
@@ -111,6 +110,5 @@
     </form>
     <br/>
     <div id="mensagem-erro" class="mensagem-erro"></div>
-    <div id="modal_user">rege</div>
   </body>
 </html>
