@@ -31,11 +31,12 @@
     <table width="98%" border="1" align="center" style="margin: 5px;font-size: 10pt;">
       <thead>
         <tr>
-          <th colspan="2" style='text-align: center; font-size: 12pt'>Items Ativos</th>
+          <th colspan="3" style='text-align: center; font-size: 12pt'>Items Ativos</th>
         </tr>
         <tr>
           <th style="width: 10%; text-align: center">Cód</th>
-          <th style="width: 90%; padding-left: 2px;">Título</th>
+          <th style="width: 60%; padding-left: 2px;">Título</th>
+          <th style="width: 40%; padding-left: 2px;">Tipo de Mídia</th>
         </tr>
       </thead>
       <?php
@@ -61,6 +62,7 @@
 
             </td>
             <td style="text-align: left"  ><?= $row['title']; ?></td>
+            <td style="text-align: left"  ><?= $row['type']; ?></td>
           </tr>
         <?
         }

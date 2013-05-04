@@ -4,6 +4,10 @@
     <script type="text/javascript">
       $(function($) {
         $("#prevision").mask("99/99/9999");
+        var dias =  [ "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom" ];
+        var meses = [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ];
+        var formato = "dd/mm/yyyy";
+        $("#prevision").datepicker({ dateFormat: formato, monthNames: meses, dayNamesMin: dias });
         $('input[name=search_user]').click(function(ev) {
           var windowSize = "width=600,height=400,scrollbars=no";
           var url = 'views/loans/browse_readers.php';
