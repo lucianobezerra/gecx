@@ -7,6 +7,7 @@ function __autoload($classe) {
 $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null;
 $id   = isset($_REQUEST['id'])   ? $_REQUEST['id']   : null;
 $texto = isset($_REQUEST['texto']) ? $_REQUEST['texto'] : null;
+$nova_senha = isset($_POST['nova_senha']) ? $_POST['nova_senha'] : null;
 
 switch ($acao) {
   case "inserir":   inserir();      break;
@@ -14,6 +15,18 @@ switch ($acao) {
   case "excluir":   excluir($id);   break;
   case "desativar": desativar($id); break;
   case "buscar":    buscar($texto); break;
+  case "troca_senha": troca_senha($id, $nova_senha); break;
+}
+
+function troca_senha($id, $nova_senha){
+  $user = new User();
+  $user->setValor('password', $user->encrypt($nova_senha));
+  $user->valorpk = $id;
+  $user->delCampo("entry");
+  $user->delCampo("name");
+  $user->delCampo("username");
+  $user->delCampo("ativo");
+  $user->atualizar($user);
 }
 
 function inserir(){

@@ -38,7 +38,17 @@ class Loan extends Base {
     $sql .= "inner join items on loans.item_id = items.id ";
     $sql .= "inner join types on items.type_id = types.id ";
     $sql .= "group by loans.item_id, items.title, types.description ";
-    $sql .= "order by qtde limit 5";
+    $sql .= "order by qtde desc limit 10";
+    $result = mysql_query($sql);
+    return $result;
+  }
+
+  public function moreAssiduous(){
+    $sql =  "select loans.reader_id, readers.name, count(loans.reader_id) as qtde ";
+    $sql .= "from loans ";
+    $sql .= "inner join readers on loans.reader_id = readers.id ";
+    $sql .= "group by loans.reader_id, readers.name ";
+    $sql .= "order by qtde desc limit 10";
     $result = mysql_query($sql);
     return $result;
   }

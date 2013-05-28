@@ -4,7 +4,7 @@
     <script type="text/javascript">
       $(function($) {
         $("#prevision").mask("99/99/9999");
-        var dias =  [ "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom" ];
+        var dias =  [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab" ];
         var meses = [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ];
         var formato = "dd/mm/yyyy";
         $("#prevision").datepicker({ dateFormat: formato, monthNames: meses, dayNamesMin: dias });

@@ -28,6 +28,7 @@
   <dd>
     <ul>
       <li><a href="views/manutencao/ajustar_saldo.php">Ajustar Saldo</a></li>
+      <li><a href="views/users/alterar_senha.php">Alterar Senha</a></li>
     </ul>
   </dd>
   <dt><a href="#">Relatórios</a></dt>
@@ -36,6 +37,7 @@
       <li><a href="views/items/relatorios.php">Items</a></li>
       <li><a href="views/loans/mais_lidos.php">Mais Lidos</a></li>
       <li><a href="views/readers/aniversariantes.php">Aniversariantes</a></li>
+      <li><a href="views/loans/assiduidade.php">Assiduidade</a></li>
     </ul>
   </dd>
   <dt><a class="sair" href="logout.php">Sair do Sistema</a></dt>
